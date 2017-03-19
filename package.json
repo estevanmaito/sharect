@@ -1,0 +1,38 @@
+{
+  "name": "sharect",
+  "version": "0.8.0",
+  "description": "Share selection text",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "babel": "mkdirp dist -p && babel src/sharect.js --out-file dist/sharect.babel.js --presets es2015",
+    "uglify": "uglifyjs dist/sharect.babel.js -m -c -o dist/sharect.min.js",
+    "build": "npm run lint && npm run babel && npm run uglify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estevanmaito/sharect.git"
+  },
+  "keywords": [
+    "sharect",
+    "share",
+    "text",
+    "selection"
+  ],
+  "author": "Estevan Maito <ejmaito@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estevanmaito/sharect/issues"
+  },
+  "homepage": "https://github.com/estevanmaito/sharect#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "eslint": "^3.18.0",
+    "mkdirp": "^0.5.1",
+    "uglify-js": "^2.8.13"
+  }
+}

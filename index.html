@@ -24,18 +24,22 @@
     };
 
     (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
-  <script src="sharect.js"></script>
+  <script src="dist/sharect.min.js"></script>
   <script>
     var sharect = new Sharect();
     sharect.config({
-      twitterUsername: '@estevanmaito'
+      facebook: true,
+      twitter: true,
+      twitterUsername: '@estevanmaito',
+      backgroundColor: '#ff4081',
+      iconColor: '#fff'
     }).init();
   </script>
 </body>

@@ -13,7 +13,7 @@
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
 </p>
 
-A **light** (3.9kb) library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
+A **light** (3.4kb) library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
 
 ## Packages
 

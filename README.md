@@ -1,19 +1,16 @@
 <p align="center">
-  <img alt="babel" src="https://68.media.tumblr.com/avatar_bc75081427e7_128.png" width="128">
-</p>
-
-<p align="center">
-  Share selection text
+  <a href="https://estevanmaito.github.io/sharect"><img alt="Sharect" src="./docs/share.png"></a>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/github/downloads/sharect/sharect/total.svg?style=flat-square"></a>
-
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
 </p>
 
-A **light** (3.4kb) library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
+A **lightweight** (3.4kb) JavaScript library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
+
+[Watch it live.](https://estevanmaito.github.io/sharect)
 
 ## Packages
 
@@ -70,7 +67,7 @@ More use cases below.
 
 Result
 
-![Default](./screenshots/default.png)
+![Default](./docs/default.png)
 
 ### Facebook share
 
@@ -110,7 +107,7 @@ If you want Facebook share to work, first you will need to add the JavaScript SD
 
 Result
 
-![Facebook](./screenshots/facebook.png)
+![Facebook](./docs/facebook.png)
 
 ### Complete API
 
@@ -136,4 +133,4 @@ Note that ```twitter``` is ```true``` by default, as ```iconColor``` is ```#ffff
 
 Result
 
-![Complete](./screenshots/custom.png)
+![Complete](./docs/custom.png)

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  
+  <!-- SEO -->
+  <title>Sharect.js - Share selection text</title>
+  <meta name="description" content="A lightweight JavaScript lib to let users share their text selections to social networks, in desktop browsers.">
+  <link rel="canonical" href="https://estevanmaito.github.io/sharect">
+  <meta name="author" content="Estevan Maito">
+  <meta name="robots" content="index">
+
+  <!-- Google+ / Schema.org -->
+  <meta itemprop="name" content="Sharect.js">
+  <meta itemprop="description" content="A lightweight JavaScript lib to let users share their text selections to social networks, in desktop browsers.">
+  <meta itemprop="image" content="https://estevanmaito.github.io/sharect/share.png">
+  <link href="https://plus.google.com/+estevanmaito" rel="publisher">
+  
+  <!-- Open Graph Facebook -->
+  <meta property="og:title" content="Sharect.js">
+  <meta property="og:description" content="A lightweight JavaScript lib to let users share their text selections to social networks, in desktop browsers."/>
+  <meta property="og:url" content="https://estevanmaito.github.io/sharect">
+  <meta property="og:site_name" content="Sharect.js"/>
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://estevanmaito.github.io/sharect/share.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:title" content="Sharect.js">
+  <meta name="twitter:description" content="A lightweight JavaScript lib to let users share their text selections to social networks, in desktop browsers.">
+  <meta name="twitter:url" content="https://estevanmaito.github.io/sharect">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://estevanmaito.github.io/sharect/share.png">
+  <meta name="twitter:creator" content="@estevanmaito">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="normalize.css">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel:900|Fira+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+  
+  <div class="container">
+
+    <nav>
+      <ul class="nav">
+        <li class="nav__link"><a href="#">Download</a></li>
+        <li class="nav__link"><a href="#">Github</a></li>
+      </ul>
+    </nav>
+
+    <header class="header">
+      <h1>Sharect</h1>
+      <h4>Share selection text</h4>
+      <p class="header__intro text-center"><span class="animate-selection">A <strong>lightweight</strong> (3.4kb) JavaScript library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)</span></p>
+      <!-- <p>TRY SELECTING ANY TEXT</p> -->
+    </header>
+
+    <section class="row section">
+      <article class="grid-1-4 text-center">
+        <p>Lightweight, 3.4Kb minified.</p>
+      </article>
+      <article class="grid-1-4 text-center">
+        <p>Start using with 3 lines of code.</p>
+      </article>
+      <article class="grid-1-4 text-center">
+        <p>No dependencies at all.</p>
+      </article>
+      <article class="grid-1-4 text-center">
+        <p>Tiny and comprehensive API.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>Usage</h2>
+
+      <article>
+        <h3>Default</h3>
+        <div class="row">
+          <section class="grid-1-2">
+            <script src="https://gist.github.com/estevanmaito/947d42096ca9afa5384ab77bbe358db7.js"></script>
+          </section>
+          <section class="grid-1-2">
+            <img src="default.png" alt="Share selection text to Twitter is the default option." class="img-responsive">
+          </section>
+        </div>
+      </article>
+      <article>
+        <h3>Complete</h3>
+        <div class="row">
+          <section class="grid-1-2">
+            <script src="https://gist.github.com/estevanmaito/ee5fe496f59a115b671949cb32a393e1.js"></script>
+          </section>
+          <section class="grid-1-2">
+            <img src="custom.png" alt="The complete API offers full customization and share to Twitter and Facebook." class="img-responsive">
+          </section>
+        </div>
+        <p>The above example assumes you already have started Facebook's JavaScript SDK. <a href="https://github.com/estevanmaito/sharect#facebook-share">Read more in the docs</a>.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2>Installation</h2>
+
+      <article>
+        <h3>NPM</h3>
+        <pre><code>npm install sharect</code></pre>
+      </article>
+
+      <article>
+        <h3>Script</h3>
+        <p><a href="https://github.com/estevanmaito/sharect">Download</a> and reference the minified JavaScript file in your HTML like the default example above.</p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p><a href="https://github.com/estevanmaito">Made by @estevanmaito</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1660610237489945',
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script src="../src/sharect.js"></script>
+  <script>
+    var sharect = new Sharect();
+    sharect.config({
+      facebook: true,
+      twitter: true,
+      twitterUsername: '@estevanmaito',
+      backgroundColor: '#9bab2f',
+      iconColor: '#fff'
+    }).init();
+  </script>
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
+</html>

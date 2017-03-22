@@ -1,11 +1,8 @@
 {
   "name": "sharect",
-  "version": "0.8.0",
+  "version": "0.0.0",
   "description": "Share selection text",
   "main": "index.js",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
     "lint": "eslint src",
     "babel": "mkdirp dist -p && babel src/sharect.js --out-file dist/sharect.babel.js --presets es2015",

@@ -44,7 +44,7 @@ var Sharect = function () {
       var txt = _twitterConfig.username ? ' ' + _twitterConfig.username + ' ' + window.location.href : ' ' + window.location.href;
 
       var twBtn = new Button(_twitterConfig.icon, function () {
-        window.open(_twitterConfig.url + _text + txt, 'Share', 'width=550, height=280');
+        window.open(_twitterConfig.url + encodeURIComponent(_text) + txt, 'Share', 'width=550, height=280');
         return false;
       });
 

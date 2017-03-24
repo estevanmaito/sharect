@@ -45,16 +45,22 @@ a:hover {
 
 /* Grid */
 .row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .grid-1-2 {
-  flex-basis: 50%;
+  -webkit-flex-basis: 50%;
+      -ms-flex-preferred-size: 50%;
+          flex-basis: 50%;
   max-width: 50%;
 }
 
 .grid-1-4 {
-  flex-basis: 25%;
+  -webkit-flex-basis: 25%;
+      -ms-flex-preferred-size: 25%;
+          flex-basis: 25%;
   max-width: 25%;
 }
 
@@ -75,8 +81,12 @@ a:hover {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .nav__link {
@@ -89,10 +99,18 @@ a:hover {
 
 /* Header */
 .header {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
+  -webkit-flex-flow: column wrap;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 4rem 0 7rem;
 }
 
@@ -108,12 +126,29 @@ a:hover {
 /* Footer */
 .footer {
   padding: 2rem 0 6rem;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 /* Animations */
+@-webkit-keyframes selection {
+  0% { 
+    box-shadow: inset 0px 0 0 0 #4298EE;
+  }
+  50% { 
+    box-shadow: inset 150px 0 0 0 #4298EE;
+  }
+  100% { 
+    box-shadow: inset 300px 0 0 0 #4298EE;
+  }
+}
 @keyframes selection {
   0% { 
     box-shadow: inset 0px 0 0 0 #4298EE;
@@ -128,6 +163,5 @@ a:hover {
 
 .animate-selection {
   -webkit-animation: selection 2s linear 2s 2;
-  -o-animation: selection 2s linear 2s 2;
   animation: selection 2s linear 2s 2;
 }

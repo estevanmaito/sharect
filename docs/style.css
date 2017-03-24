@@ -96,6 +96,10 @@ a:hover {
   margin: 4rem 0 7rem;
 }
 
+.header__logo {
+  margin: 5rem 0 7rem;
+}
+
 .header__intro {
   max-width: 600px;
   margin: 0 auto;

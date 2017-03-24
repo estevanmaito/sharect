@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://estevanmaito.github.io/sharect"><img alt="Sharect" src="./docs/share.png"></a>
+  <a href="https://estevanmaito.github.io/sharect"><img alt="Sharect" src="./docs/sharect.gif"></a>
 </p>
 
 <p align="center">

@@ -53,7 +53,7 @@ var Sharect = function () {
 
     function appendIconStyle() {
       var style = document.createElement('style');
-      style.innerHTML = '.sharect__icon { fill: ' + _iconColor + '; }';
+      style.innerHTML = '.sharect__icon{fill:' + _iconColor + ';}';
       document.body.appendChild(style);
     }
 
@@ -99,7 +99,7 @@ var Sharect = function () {
       div.appendChild(_icons.icons);
 
       var arrow = document.createElement('div');
-      arrow.style = 'position:absolute;' + 'border-left:' + _arrowSize + 'px solid transparent;' + 'border-right:' + _arrowSize + 'px solid transparent;' + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';' + 'bottom:-' + _arrowSize + 'px;' + 'left:' + (_iconSize * _icons.length / 2 - _arrowSize) + 'px;' + 'width:0;' + 'height:0;';
+      arrow.style = 'position:absolute;' + 'border-left:' + _arrowSize + 'px solid transparent;' + 'border-right:' + _arrowSize + 'px solid transparent;' + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';' + 'bottom:-' + (_arrowSize - 1) + 'px;' + 'left:' + (_iconSize * _icons.length / 2 - _arrowSize) + 'px;' + 'width:0;' + 'height:0;';
 
       div.appendChild(arrow);
 

@@ -53,7 +53,7 @@ const Sharect = (function(){
 
     function appendIconStyle() {
       const style = document.createElement('style')
-      style.innerHTML = `.sharect__icon { fill: ${_iconColor}; }`
+      style.innerHTML = `.sharect__icon{fill:${_iconColor};}`
       document.body.appendChild(style)
     }
 
@@ -109,7 +109,7 @@ const Sharect = (function(){
                   + 'border-left:' + _arrowSize + 'px solid transparent;'
                   + 'border-right:' + _arrowSize + 'px solid transparent;'
                   + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';'
-                  + 'bottom:-' + _arrowSize + 'px;'
+                  + 'bottom:-' + (_arrowSize - 1) + 'px;'
                   + 'left:' + (((_iconSize * _icons.length) / 2) - _arrowSize) + 'px;'
                   + 'width:0;'
                   + 'height:0;'

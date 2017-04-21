@@ -54,8 +54,8 @@ const Sharect = (function(){
 
     function twitterButton() {
       const txt = _twitterConfig.username
-                  ? ` ${_twitterConfig.username} ${window.location.href}`
-                  : ` ${window.location.href}`
+                  ? ` ${_twitterConfig.username} ${encodeURIComponent(window.location.href)}`
+                  : ` ${encodeURIComponent(window.location.href)}`
 
       const twBtn = new Button(_twitterConfig.icon, function() {
         window.open(_twitterConfig.url + encodeURIComponent(_text) + txt, 'Share', 'width=550, height=280')

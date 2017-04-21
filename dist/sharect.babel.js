@@ -27,6 +27,20 @@ var Sharect = function () {
     var _top = 0;
     var _left = 0;
 
+    function offsetParent(el) {
+      var offsetParent = el.offsetParent;
+
+      while (offsetParent && offsetParent.style.position === 'static') {
+        offsetParent = offsetParent.offsetParent;
+      }
+
+      return offsetParent || document.body;
+    }
+
+    function hasSelection() {
+      return !!window.getSelection().toString();
+    }
+
     function facebookButton() {
       var fbBtn = new Button(_facebookConfig.icon, function () {
         FB.ui({
@@ -41,7 +55,7 @@ var Sharect = function () {
     }
 
     function twitterButton() {
-      var txt = _twitterConfig.username ? ' ' + _twitterConfig.username + ' ' + window.location.href : ' ' + window.location.href;
+      var txt = _twitterConfig.username ? ' ' + _twitterConfig.username + ' ' + encodeURIComponent(window.location.href) : ' ' + encodeURIComponent(window.location.href);
 
       var twBtn = new Button(_twitterConfig.icon, function () {
         window.open(_twitterConfig.url + encodeURIComponent(_text) + txt, 'Share', 'width=550, height=280');
@@ -79,6 +93,14 @@ var Sharect = function () {
       var DOCUMENT_SCROLL_TOP = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop;
       _top = position.top + DOCUMENT_SCROLL_TOP - _iconSize - _arrowSize;
       _left = position.left + (position.width - _iconSize * _icons.length) / 2;
+      if (hasSelection()) {
+        var offParent = offsetParent(_selection.anchorNode.parentElement);
+        if (offParent !== document.body) {
+          var offsetPosition = offParent.getBoundingClientRect();
+          _top = _top - offsetPosition.top + offParent.scrollTop;
+          _left = _left - offsetPosition.left;
+        }
+      }
     }
 
     function moveTooltip() {
@@ -103,16 +125,25 @@ var Sharect = function () {
 
       div.appendChild(arrow);
 
-      document.body.appendChild(div);
+      if (hasSelection()) {
+        offsetParent(_selection.anchorNode.parentElement).appendChild(div);
+      } else {
+        document.body.appendChild(div);
+      }
     }
 
     function attachEvents() {
-      function hasSelection() {
-        return !!window.getSelection().toString();
-      }
 
       function hasTooltipDrawn() {
-        return !!document.querySelector('.sharect');
+        var tooltip = document.querySelector('.sharect');
+        if (!tooltip) return false;
+
+        if (hasSelection() && offsetParent(tooltip) === offsetParent(_selection.anchorNode.parentElement)) {
+          return true;
+        }
+
+        tooltip.remove();
+        return false;
       }
 
       window.addEventListener('mouseup', function () {

@@ -121,7 +121,15 @@ const Sharect = (function(){
 
     function attachEvents() {
       function hasSelection() {
-        return !!window.getSelection().toString()
+        var permittedFlag = false;
+        _selectableElements.split(',').forEach(element => {
+          try {
+            if (window.getSelection().baseNode.parentElement.nodeName.toLowerCase() == element)
+              permittedFlag = true;
+          }
+          catch (err) { }
+        });
+        return (!!window.getSelection().toString()) && permittedFlag
       }
 
       function hasTooltipDrawn() {
@@ -161,6 +169,7 @@ const Sharect = (function(){
                                 : options.twitterUsername
       _backgroundColor = options.backgroundColor || '#333'
       _iconColor = options.iconColor || '#fff'
+      _selectableElements = options.selectableElements || 'p'
       return this
     }
 

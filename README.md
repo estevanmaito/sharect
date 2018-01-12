@@ -54,6 +54,7 @@ More use cases below.
 - ```twitterUsername: false```
 - ```backgroundColor: #333333```
 - ```iconColor: #FFFFFF```
+- ```selectableElements: 'p'```
 
 ```html
   ...
@@ -123,7 +124,8 @@ Assuming you already added the above Facebook SDK script.
       twitter: true,
       twitterUsername: '@estevanmaito',
       backgroundColor: '#ff4081',
-      iconColor: '#fff'
+      iconColor: '#fff',
+      selectableElements:"p,span,a"
     }).init();
   </script>
 </body>

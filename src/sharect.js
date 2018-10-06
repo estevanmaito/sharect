@@ -58,19 +58,19 @@ const Sharect = (function(){
     }
 
     function appendIcons() {
-      const div = document.createElement('div')
-      let count = 0
+      const icons = document.createElement('div')
+      let length = 0
       if (_networks.twitter) {
-        div.appendChild(twitterButton())
-        count++
+        icons.appendChild(twitterButton())
+        length++
       }
       if (_networks.facebook) {
-        div.appendChild(facebookButton())
-        count++
+        icons.appendChild(facebookButton())
+        length++
       }
       return {
-        icons: div,
-        length: count
+        icons,
+        length
       }
     }
 
@@ -92,9 +92,9 @@ const Sharect = (function(){
       _icons = appendIcons()
       setTooltipPosition()
 
-      const div = document.createElement('div')
-      div.className = 'sharect'
-      div.style = 'line-height:0;'
+      const container = document.createElement('div')
+      container.className = 'sharect'
+      container.style = 'line-height:0;'
                 + 'position:absolute;'
                 + 'background-color:' + _backgroundColor + ';'
                 + 'border-radius:3px;'
@@ -102,7 +102,7 @@ const Sharect = (function(){
                 + 'left:' + _left + 'px;'
                 + 'transition:all .2s ease-in-out;'
 
-      div.appendChild(_icons.icons)
+      container.appendChild(_icons.icons)
 
       const arrow = document.createElement('div')
       arrow.style = 'position:absolute;'
@@ -114,9 +114,9 @@ const Sharect = (function(){
                   + 'width:0;'
                   + 'height:0;'
 
-      div.appendChild(arrow)
+      container.appendChild(arrow)
 
-      document.body.appendChild(div)
+      document.body.appendChild(container)
     }
 
     function attachEvents() {
@@ -171,8 +171,8 @@ const Sharect = (function(){
     }
 
     return {
-      config: config,
-      init: init
+      config,
+      init
     }
   }
 

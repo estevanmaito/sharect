@@ -76,7 +76,9 @@ const Sharect = (function(){
 
     function setTooltipPosition() {
       const position = _selection.getRangeAt(0).getBoundingClientRect()
-      const DOCUMENT_SCROLL_TOP = window.pageXOffset || document.documentElement.scrollTop || document.body.scrollTop
+      const DOCUMENT_SCROLL_TOP = window.pageXOffset
+                                || document.documentElement.scrollTop
+                                || document.body.scrollTop
       _top = position.top + DOCUMENT_SCROLL_TOP - _iconSize - _arrowSize
       _left = position.left + (position.width - _iconSize * _icons.length) / 2
     }
@@ -115,7 +117,7 @@ const Sharect = (function(){
                   + 'height:0;'
 
       container.appendChild(arrow)
-
+      
       document.body.appendChild(container)
     }
 
@@ -123,7 +125,7 @@ const Sharect = (function(){
       function hasSelection() {
         return !!window.getSelection().toString()
       }
-
+      
       function hasTooltipDrawn() {
         return !!document.querySelector('.sharect')
       }

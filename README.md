@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>
-  <a href="https://github.com/estevanmaito/sharect/releases/download/v1.0.1/sharect.min.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/latest/total.svg?style=flat-square"></a>
+  <a href="https://github.com/estevanmaito/sharect/releases/download/v1.0.2/sharect.min.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/total.svg?style=flat-square"></a>
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
 </p>
 
@@ -18,8 +18,6 @@ A **lightweight** (3.5kb) JavaScript library to let users share their text selec
 |---------|---------|-------------|
 |sharect|<a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>|No dependencies, plug-n-play|
 |sharect-react|Soon|React.js plugin|
-|sharect-vue|Soon|Vue.js plugin|
-|sharect-chrome|Soon|Chrome extension|
 
 ## Usage
 

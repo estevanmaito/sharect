@@ -96,7 +96,7 @@ const Sharect = (function(){
 
       const container = document.createElement('div')
       container.className = 'sharect'
-      container.style = 'line-height:0;'
+      container.style.cssText = 'line-height:0;'
                 + 'position:absolute;'
                 + 'background-color:' + _backgroundColor + ';'
                 + 'border-radius:3px;'
@@ -107,7 +107,7 @@ const Sharect = (function(){
       container.appendChild(_icons.icons)
 
       const arrow = document.createElement('div')
-      arrow.style = 'position:absolute;'
+      arrow.style.cssText = 'position:absolute;'
                   + 'border-left:' + _arrowSize + 'px solid transparent;'
                   + 'border-right:' + _arrowSize + 'px solid transparent;'
                   + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';'
@@ -117,7 +117,7 @@ const Sharect = (function(){
                   + 'height:0;'
 
       container.appendChild(arrow)
-      
+
       document.body.appendChild(container)
     }
 
@@ -125,7 +125,7 @@ const Sharect = (function(){
       function hasSelection() {
         return !!window.getSelection().toString()
       }
-      
+
       function hasTooltipDrawn() {
         return !!document.querySelector('.sharect')
       }
@@ -180,7 +180,7 @@ const Sharect = (function(){
 
   function Button(icon, clickFn) {
     const btn = document.createElement('div')
-    btn.style = 'display:inline-block;'
+    btn.style.cssText = 'display:inline-block;'
               + 'margin:7px;'
               + 'cursor:pointer;'
               + 'transition:all .2s ease-in-out;'

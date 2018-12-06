@@ -58,19 +58,19 @@ var Sharect = function () {
     }
 
     function appendIcons() {
-      var div = document.createElement('div');
-      var count = 0;
+      var icons = document.createElement('div');
+      var length = 0;
       if (_networks.twitter) {
-        div.appendChild(twitterButton());
-        count++;
+        icons.appendChild(twitterButton());
+        length++;
       }
       if (_networks.facebook) {
-        div.appendChild(facebookButton());
-        count++;
+        icons.appendChild(facebookButton());
+        length++;
       }
       return {
-        icons: div,
-        length: count
+        icons: icons,
+        length: length
       };
     }
 
@@ -92,18 +92,18 @@ var Sharect = function () {
       _icons = appendIcons();
       setTooltipPosition();
 
-      var div = document.createElement('div');
-      div.className = 'sharect';
-      div.style = 'line-height:0;' + 'position:absolute;' + 'background-color:' + _backgroundColor + ';' + 'border-radius:3px;' + 'top:' + _top + 'px;' + 'left:' + _left + 'px;' + 'transition:all .2s ease-in-out;';
+      var container = document.createElement('div');
+      container.className = 'sharect';
+      container.style.cssText = 'line-height:0;' + 'position:absolute;' + 'background-color:' + _backgroundColor + ';' + 'border-radius:3px;' + 'top:' + _top + 'px;' + 'left:' + _left + 'px;' + 'transition:all .2s ease-in-out;';
 
-      div.appendChild(_icons.icons);
+      container.appendChild(_icons.icons);
 
       var arrow = document.createElement('div');
-      arrow.style = 'position:absolute;' + 'border-left:' + _arrowSize + 'px solid transparent;' + 'border-right:' + _arrowSize + 'px solid transparent;' + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';' + 'bottom:-' + (_arrowSize - 1) + 'px;' + 'left:' + (_iconSize * _icons.length / 2 - _arrowSize) + 'px;' + 'width:0;' + 'height:0;';
+      arrow.style.cssText = 'position:absolute;' + 'border-left:' + _arrowSize + 'px solid transparent;' + 'border-right:' + _arrowSize + 'px solid transparent;' + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';' + 'bottom:-' + (_arrowSize - 1) + 'px;' + 'left:' + (_iconSize * _icons.length / 2 - _arrowSize) + 'px;' + 'width:0;' + 'height:0;';
 
-      div.appendChild(arrow);
+      container.appendChild(arrow);
 
-      document.body.appendChild(div);
+      document.body.appendChild(container);
     }
 
     function attachEvents() {
@@ -159,7 +159,7 @@ var Sharect = function () {
 
   function Button(icon, clickFn) {
     var btn = document.createElement('div');
-    btn.style = 'display:inline-block;' + 'margin:7px;' + 'cursor:pointer;' + 'transition:all .2s ease-in-out;';
+    btn.style.cssText = 'display:inline-block;' + 'margin:7px;' + 'cursor:pointer;' + 'transition:all .2s ease-in-out;';
     btn.innerHTML = icon;
     btn.onclick = clickFn;
     btn.onmouseover = function () {

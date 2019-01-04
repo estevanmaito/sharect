@@ -172,7 +172,15 @@ const Sharect = (function(){
       attachEvents()
       return this
     }
-
+    function reAlign() {
+      moveTooltip()
+      return this
+    }
+    window.onresize = function(event) {
+      if (document.querySelector('.sharect') != null) {
+        reAlign();
+      }
+    };
     return {
       config,
       init

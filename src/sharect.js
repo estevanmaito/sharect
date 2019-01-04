@@ -51,9 +51,9 @@ const Sharect = (function(){
       return twBtn
     }
 
-    function appendIconStyle() {
+    function appendIconStyleAndSharectStyle() {
       const style = document.createElement('style')
-      style.innerHTML = `.sharect__icon{fill:${_iconColor};}`
+      style.innerHTML = `.sharect__icon{fill:${_iconColor};}.Show-with-transition{opacity:1 !important;ms-transform:translateY(0px) !important;-webkit-transform:translateY(0px) !important;transform:translateY(0px) !important;}.sharect{ms-transform:translateY(-20px);-webkit-transform:translateY(-20px);transform:translateY(-20px);opacity:0;-webkit-transition: .2s ease-in-out;-moz-transition: .2s ease-in-out;-o-transition:.2s ease-in-out;transition: .2s ease-in-out}`
       document.body.appendChild(style)
     }
 
@@ -105,7 +105,7 @@ const Sharect = (function(){
                 + 'transition:all .2s ease-in-out;'
 
       container.appendChild(_icons.icons)
-
+      setTimeout(function(){container.classList.add("Show-with-transition")},100);
       const arrow = document.createElement('div')
       arrow.style.cssText = 'position:absolute;'
                   + 'border-left:' + _arrowSize + 'px solid transparent;'
@@ -139,7 +139,8 @@ const Sharect = (function(){
               moveTooltip()
               return
             } else {
-              document.querySelector('.sharect').remove()
+              document.querySelector('.sharect').classList.remove("Show-with-transition");
+              setTimeout(function(){document.querySelector('.sharect').remove();},100);
             }
           }
           if (hasSelection()) {
@@ -167,7 +168,7 @@ const Sharect = (function(){
     }
 
     function init() {
-      appendIconStyle()
+      appendIconStyleAndSharectStyle()
       attachEvents()
       return this
     }

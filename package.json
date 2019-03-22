@@ -19,6 +19,9 @@
     "text",
     "selection"
   ],
+  "files": [
+    "/dist/sharect.min.js"
+  ],
   "author": "Estevan Maito <ejmaito@gmail.com>",
   "license": "MIT",
   "bugs": {

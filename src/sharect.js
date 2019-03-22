@@ -1,4 +1,4 @@
-const Sharect = (function(){
+const Sharect = (function() {
 
   function Sharect() {
     const _networks = {
@@ -17,15 +17,12 @@ const Sharect = (function(){
     let _text = ''
     let _backgroundColor = '#333'
     let _iconColor = '#fff'
-
     let _icons = {}
     let _arrowSize = 5
     let _buttonMargin = 7 * 2
     let _iconSize = 24 + _buttonMargin
-    let _top = 0
-    let _left = 0
 
-    function facebookButton() {
+    function createFacebookButton() {
       const fbBtn = new Button(_facebookConfig.icon, function() {
         FB.ui({
           method: 'share',
@@ -38,7 +35,7 @@ const Sharect = (function(){
       return fbBtn
     }
 
-    function twitterButton() {
+    function createTwitterButton() {
       const txt = _twitterConfig.username
                   ? ` ${_twitterConfig.username} ${window.location.href}`
                   : ` ${window.location.href}`
@@ -57,85 +54,90 @@ const Sharect = (function(){
       document.body.appendChild(style)
     }
 
-    function appendIcons() {
+    function getIcons() {
       const icons = document.createElement('div')
       let length = 0
       if (_networks.twitter) {
-        icons.appendChild(twitterButton())
+        icons.appendChild(createTwitterButton())
         length++
       }
       if (_networks.facebook) {
-        icons.appendChild(facebookButton())
+        icons.appendChild(createFacebookButton())
         length++
       }
-      return {
-        icons,
-        length
-      }
+      _icons = { icons, length }
     }
 
-    function setTooltipPosition() {
-      const position = _selection.getRangeAt(0).getBoundingClientRect()
+    function getTooltipPosition() {
+      const selection = _selection.getRangeAt(0).getBoundingClientRect()
       const DOCUMENT_SCROLL_TOP = window.pageXOffset
                                 || document.documentElement.scrollTop
                                 || document.body.scrollTop
-      _top = position.top + DOCUMENT_SCROLL_TOP - _iconSize - _arrowSize
-      _left = position.left + (position.width - _iconSize * _icons.length) / 2
+      const top = selection.top + DOCUMENT_SCROLL_TOP - _iconSize - _arrowSize
+      const left = selection.left + (selection.width - _iconSize * _icons.length) / 2
+      return { top, left }
     }
 
     function moveTooltip() {
-      setTooltipPosition()
+      const { top, left } = getTooltipPosition()
       let tooltip = document.querySelector('.sharect')
-      tooltip.style.top = `${_top}px`
-      tooltip.style.left = `${_left}px`
+      tooltip.style.top = `${top}px`
+      tooltip.style.left = `${left}px`
     }
+    
+    function createTooltip(top = 0, left = 0) {
+      const tooltip = document.createElement('div')
+      tooltip.className = 'sharect'
+      tooltip.style.cssText = 'line-height:0;'
+                            + 'position:absolute;'
+                            + 'background-color:' + _backgroundColor + ';'
+                            + 'border-radius:3px;'
+                            + 'top:' + top + 'px;'
+                            + 'left:' + left + 'px;'
+                            + 'transition:all .2s ease-in-out;'
 
-    function drawTooltip() {
-      _icons = appendIcons()
-      setTooltipPosition()
-
-      const container = document.createElement('div')
-      container.className = 'sharect'
-      container.style.cssText = 'line-height:0;'
-                + 'position:absolute;'
-                + 'background-color:' + _backgroundColor + ';'
-                + 'border-radius:3px;'
-                + 'top:' + _top + 'px;'
-                + 'left:' + _left + 'px;'
-                + 'transition:all .2s ease-in-out;'
-
-      container.appendChild(_icons.icons)
+      tooltip.appendChild(_icons.icons)
 
       const arrow = document.createElement('div')
       arrow.style.cssText = 'position:absolute;'
-                  + 'border-left:' + _arrowSize + 'px solid transparent;'
-                  + 'border-right:' + _arrowSize + 'px solid transparent;'
-                  + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';'
-                  + 'bottom:-' + (_arrowSize - 1) + 'px;'
-                  + 'left:' + (((_iconSize * _icons.length) / 2) - _arrowSize) + 'px;'
-                  + 'width:0;'
-                  + 'height:0;'
+                          + 'border-left:' + _arrowSize + 'px solid transparent;'
+                          + 'border-right:' + _arrowSize + 'px solid transparent;'
+                          + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';'
+                          + 'bottom:-' + (_arrowSize - 1) + 'px;'
+                          + 'left:' + (((_iconSize * _icons.length) / 2) - _arrowSize) + 'px;'
+                          + 'width:0;'
+                          + 'height:0;'
 
-      container.appendChild(arrow)
+      tooltip.appendChild(arrow)
 
-      document.body.appendChild(container)
+      return tooltip
+    }
+
+    function drawTooltip() {
+      const { top, left } = getTooltipPosition()
+      const tooltip = createTooltip(top, left)
+      document.body.appendChild(tooltip)
+    }
+
+    function hasSelection() {
+      return !!window.getSelection().toString()
+    }
+
+    function hasTooltipDrawn() {
+      return !!document.querySelector('.sharect')
+    }
+
+    function updateTextSelection() {
+      _selection = window.getSelection()
+      _text = _selection.toString()
     }
 
     function attachEvents() {
-      function hasSelection() {
-        return !!window.getSelection().toString()
-      }
-
-      function hasTooltipDrawn() {
-        return !!document.querySelector('.sharect')
-      }
-
       window.addEventListener('mouseup', function() {
         setTimeout(function mouseTimeout() {
           if (hasTooltipDrawn()) {
             if (hasSelection()) {
-              _selection = window.getSelection()
-              _text = _selection.toString()
+              updateTextSelection()
               moveTooltip()
               return
             } else {
@@ -143,8 +145,7 @@ const Sharect = (function(){
             }
           }
           if (hasSelection()) {
-            _selection = window.getSelection()
-            _text = _selection.toString()
+            updateTextSelection()
             drawTooltip()
           }
         }, 10)
@@ -161,13 +162,14 @@ const Sharect = (function(){
       _twitterConfig.username = options.twitterUsername === undefined
                                 ? _twitterConfig.username
                                 : options.twitterUsername
-      _backgroundColor = options.backgroundColor || '#333'
-      _iconColor = options.iconColor || '#fff'
+      _backgroundColor = options.backgroundColor || _backgroundColor
+      _iconColor = options.iconColor || _iconColor
       return this
     }
 
     function init() {
       appendIconStyle()
+      getIcons()
       attachEvents()
       return this
     }
@@ -181,9 +183,9 @@ const Sharect = (function(){
   function Button(icon, clickFn) {
     const btn = document.createElement('div')
     btn.style.cssText = 'display:inline-block;'
-              + 'margin:7px;'
-              + 'cursor:pointer;'
-              + 'transition:all .2s ease-in-out;'
+                      + 'margin:7px;'
+                      + 'cursor:pointer;'
+                      + 'transition:all .2s ease-in-out;'
     btn.innerHTML = icon
     btn.onclick = clickFn
     btn.onmouseover = function() {

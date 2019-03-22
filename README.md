@@ -8,7 +8,7 @@
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
 </p>
 
-A **lightweight** (3.5kb, 1.5kb gziped) JavaScript library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
+A **lightweight** (3.7kb, 1.6kb gziped) JavaScript library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
 
 [Watch it live.](https://estevanmaito.github.io/sharect)
 

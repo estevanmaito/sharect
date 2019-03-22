@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>
-  <a href="https://github.com/estevanmaito/sharect/releases/download/v1.0.2/sharect.min.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/total.svg?style=flat-square"></a>
+  <a href="https://github.com/estevanmaito/sharect/releases/download/v1.1.0/sharect.min.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/total.svg?style=flat-square"></a>
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
 </p>
 
@@ -29,7 +29,7 @@ npm install sharect
 
 ### Script
 
-[Download](https://github.com/estevanmaito/sharect/releases/download/v1.0.1/sharect.min.js)
+[Download](https://github.com/estevanmaito/sharect/releases/download/v1.1.0/sharect.min.js)
 
 Add the script to the project and initialize
 

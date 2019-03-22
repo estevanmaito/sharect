@@ -45,13 +45,18 @@ More use cases below.
 
 ## Docs
 
-### Default settings
+### API settings
 
-- ```twitter: true```
-- ```facebook: false```
-- ```twitterUsername: false```
-- ```backgroundColor: #333333```
-- ```iconColor: #FFFFFF```
+Property | Default | Type | Description
+-- | -- | -- | --
+`twitter` | `true` | `boolean` | If Twitter should show in tooltip
+`facebook` | `false` | `boolean` | If Facebook should show in tooltip. [Read more](#facebook-share) about configuring Facebook.
+`twitterUsernmae` | `""` | `string` | The username that should be cited when shared, begining with `@`
+`backgroundColor` | `#333333` | `string` | The background color of the tooltip. Can be any valid CSS color name
+`iconColor` | `#FFFFFF` | `string` | The color of the icons in the tooltip. Can be any valid CSS color name
+`selectableElements` | `['body']` | `array` | Define the elements that can be selected, including it's children. **It expects a valid selector string** like `['p', '.article', '#main']`
+
+### Minimum example
 
 ```html
   ...
@@ -121,7 +126,8 @@ Assuming you already added the above Facebook SDK script.
       twitter: true,
       twitterUsername: '@estevanmaito',
       backgroundColor: '#ff4081',
-      iconColor: '#fff'
+      iconColor: '#fff',
+      selectableElements: ['p', '.header', 'blockquote']
     }).init();
   </script>
 </body>

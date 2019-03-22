@@ -84,7 +84,7 @@ If you want Facebook share to work, first you will need to add the JavaScript SD
       FB.init({
         appId      : 'YOUR-APP-ID',
         xfbml      : true,
-        version    : 'v2.8'
+        version    : 'v3.2'
       });
       FB.AppEvents.logPageView();
     };

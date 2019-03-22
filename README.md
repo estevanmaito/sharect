@@ -132,3 +132,7 @@ Note that ```twitter``` is ```true``` by default, as ```iconColor``` is ```#ffff
 Result
 
 ![Complete](./docs/custom.png)
+
+## Contributing
+
+Please, read the [CONTRIBUTING.md](CONTRIBUTING.md).

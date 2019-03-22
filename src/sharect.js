@@ -21,6 +21,7 @@ const Sharect = (function() {
     let _arrowSize = 5
     let _buttonMargin = 7 * 2
     let _iconSize = 24 + _buttonMargin
+    let _selectableElements = ['body']
 
     function createFacebookButton() {
       const fbBtn = new Button(_facebookConfig.icon, function() {
@@ -132,11 +133,32 @@ const Sharect = (function() {
       _text = _selection.toString()
     }
 
+    function getClosestElement(element, ancestor) {
+      if (Element.prototype.closest) {
+        return element.closest(ancestor)
+      } else {
+        // IE 9+ polyfill
+        let el = element
+        do {
+          if (el.matches(ancestor)) return el
+          el = el.parentNode
+        } while (el !== null && el.nodeType === Node.ELEMENT_NODE)
+        return null
+      }
+    }
+
+    function isSelectableElement() {
+      let currentSelectedElement = window.getSelection().baseNode.parentNode
+      return _selectableElements.some(function(ancestor) {
+        return getClosestElement(currentSelectedElement, ancestor)
+      })
+    }
+
     function attachEvents() {
       window.addEventListener('mouseup', function() {
         setTimeout(function mouseTimeout() {
           if (hasTooltipDrawn()) {
-            if (hasSelection()) {
+            if (hasSelection() && isSelectableElement()) {
               updateTextSelection()
               moveTooltip()
               return
@@ -144,7 +166,7 @@ const Sharect = (function() {
               document.querySelector('.sharect').remove()
             }
           }
-          if (hasSelection()) {
+          if (hasSelection() && isSelectableElement()) {
             updateTextSelection()
             drawTooltip()
           }
@@ -164,6 +186,7 @@ const Sharect = (function() {
                                 : options.twitterUsername
       _backgroundColor = options.backgroundColor || _backgroundColor
       _iconColor = options.iconColor || _iconColor
+      _selectableElements = options.selectableElements || _selectableElements
       return this
     }
 

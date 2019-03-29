@@ -51,7 +51,7 @@ Property | Default | Type | Description
 -- | -- | -- | --
 `twitter` | `true` | `boolean` | If Twitter should show in tooltip
 `facebook` | `false` | `boolean` | If Facebook should show in tooltip. [Read more](#facebook-share) about configuring Facebook.
-`twitterUsernmae` | `""` | `string` | The username that should be cited when shared, begining with `@`
+`twitterUsername` | `""` | `string` | The username that should be cited when shared, begining with `@`
 `backgroundColor` | `#333333` | `string` | The background color of the tooltip. Can be any valid CSS color name
 `iconColor` | `#FFFFFF` | `string` | The color of the icons in the tooltip. Can be any valid CSS color name
 `selectableElements` | `['body']` | `array` | Define the elements that can be selected, including it's children. **It expects a valid selector string** like `['p', '.article', '#main']`

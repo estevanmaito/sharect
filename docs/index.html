@@ -124,34 +124,15 @@
 
   </div>
 
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '1811139599209031',
-        xfbml      : true,
-        version    : 'v3.2'
-      });
-      FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
   <script src="sharect.min.js"></script>
   <script>
     var sharect = new Sharect();
     sharect.config({
-      facebook: true,
-      twitter: true,
-      twitterUsername: '@estevanmaito',
+      twitterUsername: 'estevanmaito',
       backgroundColor: '#9bab2f',
       iconColor: '#fff'
-    }).init();
+    })
+    .init();
   </script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

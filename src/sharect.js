@@ -21,9 +21,11 @@ const Sharect = (function() {
     let _icons = {}
     let _arrowSize = 5
     let _buttonMargin = 7 * 2
-    let _iconSize = 24 + _buttonMargin
+    let _iconSize = 24
+    let _iconSizePlusMargin = _iconSize + _buttonMargin
     let _selectableElements = ['body']
     let _customShareButtons = []
+    let _isMobile = false
 
     function createShareButton(icon, url) {
       const btn = new Button(icon, function() {
@@ -38,8 +40,14 @@ const Sharect = (function() {
 
     function appendIconStyle() {
       const style = document.createElement('style')
+      style.id = 'sharect-style'
       style.innerHTML = `.sharect__icon{fill:${_iconColor};}`
       document.body.appendChild(style)
+    }
+
+    function appendMobileIconStyle() {
+      const style = document.getElementById('sharect-style')
+      style.innerHTML = `.sharect__icon{fill:${_iconColor};width:50px;height:50px;}`
     }
 
     function getIcons() {
@@ -69,16 +77,35 @@ const Sharect = (function() {
       const DOCUMENT_SCROLL_TOP = window.pageXOffset
                                 || document.documentElement.scrollTop
                                 || document.body.scrollTop
-      const top = selection.top + DOCUMENT_SCROLL_TOP - _iconSize - _arrowSize
-      const left = selection.left + (selection.width - _iconSize * _icons.length) / 2
+      const top = selection.top + DOCUMENT_SCROLL_TOP - _iconSizePlusMargin - _arrowSize
+      const left = selection.left + (selection.width - _iconSizePlusMargin * _icons.length) / 2
       return { top, left }
     }
 
     function moveTooltip() {
+      if (_isMobile) return
       const { top, left } = getTooltipPosition()
       let tooltip = document.querySelector('.sharect')
       tooltip.style.top = `${top}px`
       tooltip.style.left = `${left}px`
+    }
+
+    function createMobileTooltip() {
+      const tooltip = document.createElement('div')
+      tooltip.className = 'sharect'
+      tooltip.style.cssText = 'line-height:0;'
+                            + 'position:fixed;'
+                            + 'background-color:' + _backgroundColor + ';'
+                            + 'bottom:calc(50% - 64px);'
+                            + 'left:0;'
+                            + 'width:64px;'
+                            + 'transition:all .2s ease-in-out;'
+                            + 'border-top-right-radius:5px;'
+                            + 'border-bottom-right-radius:5px;'
+
+      tooltip.appendChild(_icons.icons)
+
+      return tooltip;
     }
     
     function createTooltip(top = 0, left = 0) {
@@ -100,7 +127,7 @@ const Sharect = (function() {
                           + 'border-right:' + _arrowSize + 'px solid transparent;'
                           + 'border-top:' + _arrowSize + 'px solid ' + _backgroundColor + ';'
                           + 'bottom:-' + (_arrowSize - 1) + 'px;'
-                          + 'left:' + (((_iconSize * _icons.length) / 2) - _arrowSize) + 'px;'
+                          + 'left:' + (((_iconSizePlusMargin * _icons.length) / 2) - _arrowSize) + 'px;'
                           + 'width:0;'
                           + 'height:0;'
 
@@ -111,7 +138,12 @@ const Sharect = (function() {
 
     function drawTooltip() {
       const { top, left } = getTooltipPosition()
-      const tooltip = createTooltip(top, left)
+      let tooltip
+      if (_isMobile) {
+        tooltip = createMobileTooltip()
+      } else {
+        tooltip = createTooltip(top, left)
+      }
       document.body.appendChild(tooltip)
     }
 
@@ -150,23 +182,38 @@ const Sharect = (function() {
     }
 
     function attachEvents() {
-      window.addEventListener('mouseup', function() {
-        setTimeout(function mouseTimeout() {
-          if (hasTooltipDrawn()) {
+      window.addEventListener('DOMContentLoaded', function ready() {
+        window.addEventListener('mouseup', function() {
+          setTimeout(function mouseTimeout() {
+            if (hasTooltipDrawn()) {
+              if (hasSelection() && isSelectableElement()) {
+                updateTextSelection()
+                moveTooltip()
+                return
+              } else {
+                document.querySelector('.sharect').remove()
+              }
+            }
             if (hasSelection() && isSelectableElement()) {
               updateTextSelection()
-              moveTooltip()
-              return
-            } else {
-              document.querySelector('.sharect').remove()
+              drawTooltip()
             }
-          }
-          if (hasSelection() && isSelectableElement()) {
-            updateTextSelection()
-            drawTooltip()
-          }
-        }, 10)
-      }, false)
+          }, 10)
+        }, false)
+        
+        if (window.onpointerup !== undefined) {
+          window.addEventListener('pointerup', function pointerUp(e) {
+            if (e.pointerType !== 'mouse' && e.isPrimary) {
+              _isMobile = true;
+              appendMobileIconStyle()
+              window.removeEventListener('pointerup', pointerUp)
+            }
+          }, false)
+        } else if (window.orientation !== undefined) {
+          appendMobileIconStyle()
+          _isMobile = true;
+        }
+      })
     }
 
     function config(options) {
@@ -185,6 +232,7 @@ const Sharect = (function() {
       return this
     }
 
+    // TODO: add .sharect__icon class to the icons
     function appendCustomShareButton(arrayOfButtonObjects) {
       _customShareButtons = arrayOfButtonObjects
       return this

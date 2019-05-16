@@ -1,17 +1,25 @@
 {
   "name": "sharect",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Share selection text",
-  "main": "index.js",
-  "scripts": {
-    "lint": "eslint src",
-    "babel": "mkdirp dist -p && babel src/sharect.js --out-file dist/sharect.babel.js --presets env",
-    "uglify": "uglifyjs dist/sharect.babel.js -m -c -o dist/sharect.min.js",
-    "build": "npm run lint && npm run babel && npm run uglify"
+  "main": "dist/sharect.js",
+  "author": "Estevan Maito <ejmaito@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estevanmaito/sharect/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/estevanmaito/sharect.git"
+  "homepage": "https://github.com/estevanmaito/sharect#readme",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack",
+    "dev": "webpack --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^24.7.1",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1"
   },
   "keywords": [
     "sharect",
@@ -19,20 +27,8 @@
     "text",
     "selection"
   ],
-  "files": [
-    "/dist/sharect.min.js"
-  ],
-  "author": "Estevan Maito <ejmaito@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/estevanmaito/sharect/issues"
-  },
-  "homepage": "https://github.com/estevanmaito/sharect#readme",
-  "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-preset-env": "^1.7.0",
-    "eslint": "^3.18.0",
-    "mkdirp": "^0.5.1",
-    "uglify-js": "^2.8.13"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estevanmaito/sharect.git"
   }
 }

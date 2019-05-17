@@ -1,4 +1,4 @@
-function getDistanceFromTop() {
+export function getDistanceFromTop() {
   return (
     window.pageXOffset ||
     document.documentElement.scrollTop ||

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`appendIconStyle should create a style tag 1`] = `
+<body>
+  <style
+    id="sharect-style"
+  >
+    .sharect svg{fill:#F34;}
+  </style>
+</body>
+`;
+
+exports[`appendMobileIconStyle should update the style for mobile 1`] = `
+<body>
+  <style
+    id="sharect-style"
+  >
+    .sharect svg{fill:#F34;width:5px;height:5px;}
+  </style>
+</body>
+`;

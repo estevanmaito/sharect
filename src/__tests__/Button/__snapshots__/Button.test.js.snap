@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render a button element 1`] = `
+<div
+  style="display: inline-block; margin: 7px; cursor: pointer; transition: all .2s ease-in-out;"
+>
+  icon
+</div>
+`;

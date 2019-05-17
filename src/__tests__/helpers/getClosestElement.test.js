@@ -23,5 +23,20 @@ describe('getClosestElement', () => {
 
     expect(ancestor).toBeNull()
   })
-  
+
+  it('should still return the closest ancestor if Element.prototype.closest isn\'t available', () => {
+    delete Element.prototype.closest
+
+    const ancestor = getClosestElement(element, 'div')
+
+    expect(ancestor.classList).toContain('inner')
+  })
+
+  it('should still return null if there isn\'t a matching ancestor and if Element.prototype.closest isn\'t available', () => {
+    delete Element.prototype.closest
+    
+    const ancestor = getClosestElement(element, 'section')
+
+    expect(ancestor).toBeNull()
+  })
 })

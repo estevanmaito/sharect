@@ -9,7 +9,8 @@
     "test:coverage": "jest --coverage",
     "build": "webpack",
     "dev": "webpack --watch",
-    "lint": "eslint"
+    "lint": "eslint",
+    "release": "release-it"
   },
   "dependencies": {},
   "devDependencies": {

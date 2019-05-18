@@ -6,50 +6,58 @@
   <a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>
   <a href="https://github.com/estevanmaito/sharect/releases/download/v1.1.0/sharect.min.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/total.svg?style=flat-square"></a>
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
+  <a href="http://twitter.com/home?status=Sharect%20is%20a%20JavaScript%20library%20to%20let%20people%20share%20their%20text%20selections%20to%20social%20networks%20%23Sharect%20via%20%40estevanmaito"><img src="https://img.shields.io/twitter/url/https/shields.io.svg?style=social"></a>
 </p>
 
-A **lightweight** (4kb, 1.7kb gziped) JavaScript library to let users share their text selections to social networks, in desktop browsers. (Yes, like Medium)
+A **lightweight** (8kb, 1.7kb gziped) JavaScript library to let people share their text selections to social networks. (Yes, like Medium, but on mobile too)
 
 [Watch it live.](https://estevanmaito.github.io/sharect)
 
-## Packages
+## Table of contents
 
-| Package | Version | Description |
-|---------|---------|-------------|
-|sharect|<a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>|No dependencies, plug-n-play|
-|sharect-react|Soon|React.js plugin|
+- [Demo](https://estevanmaito.github.io/sharect)
+- [Quick Start](#quick-start)
+- [Browser Support](#browser-support)
+- [Documentation](#documentation)
+- [Usage](#usage)
+- [Adding more social icons](#adding-more-social-icons)
+- [Upgrade to 2.0](#upgrade)
+- [Contributing](#contributing)
 
-## Usage
+## Quick Start
 
-### NPM
+### Install (choose one)
 
-```
-npm install sharect
-```
+- `npm install sharect`
+- [Download from Github](https://github.com/estevanmaito/sharect/releases/download/v1.1.0/sharect.min.js)
+- CDN `<script src="https://unpkg.com/sharect@1.1.0/dist/sharect.min.js"></script>`
 
-### Script
+### Initialize
 
-[Download](https://github.com/estevanmaito/sharect/releases/download/v1.1.0/sharect.min.js)
-
-Add the script to the project and initialize
-
-```html
-<script src="sharect.min.js"></script>
-<script>
-  var sharect = new Sharect();
-  sharect.init();
-</script>
+```javascript
+Sharect.init();
 ```
 
-More use cases below.
+## Browser Support
 
-## Docs
+![Internet Explore 9+](/docs/browsers/ie.png)
+![Chrome 4+](/docs/browsers/chrome.png)
+![Firefox 3.5+](/docs/browsers/firefox.png)
+![Safari 5.1+](/docs/browsers/safari.png)
+![Opera 10+](/docs/browsers/opera.png)
+![Edge 12+](/docs/browsers/edge.png)
 
-### API settings
+## Documentation
 
-#### `.config(object)` optional
+The complete API is composed by 3 methods:
 
-Configure the core library. Expects an object as argument with any of the following options.
+- [.config](#config)
+- [.appendCustomShareButtons](#appendcustomsharebuttons)
+- [.init](#init)
+
+### .config
+
+**Optional**. Configure the core library. Expects an object as argument with any of the following options.
 
 Property | Default | Type | Description
 -- | -- | -- | --
@@ -60,118 +68,106 @@ Property | Default | Type | Description
 `iconColor` | `#FFFFFF` | `string` | The color of the icons in the tooltip. Can be any valid CSS color name
 `selectableElements` | `['body']` | `array` | Define the elements that can be selected, including it's children. **It expects a valid selector string** like `['p', '.article', '#main']`
 
-#### `.appendCustomShareButton(array)` optional
+<details><summary>Example</summary>
+
+```javascript
+Sharect.config({
+  twitterUsername: 'estevanmaito',
+  backgroundColor: '#C53364'
+}).init()
+```
+
+Result
+
+![result](/imagem.png)
+</details>
+
+### .appendCustomShareButtons
 
 **DISCLAIMER: If you don't plan to share on any social media other than Facebook and Twitter (covered by the `.config` method above) you can safely ignore this method.**
 
-Extends the core social buttons. Expects an array of object(s) as argument containing an `icon` and a `url`.
+**Optional**. Extends the core social buttons. Expects an array of object(s) as argument containing an `icon` and a `url`.
 
-##### `icon`
+#### `icon`
 
 `icon` must be a string containing a monochromatic 24x24px SVG.
 
-Example: 
+#### `url`
+
+`url` must be a string containing the sharing URL (a list of options can be found [in this project](https://github.com/bradvin/social-share-urls)). Note that `PAGE_URL` and `TEXT_SELECTION` are required placeholders that will be replaced by the library.
+
+<details><summary>Example</summary>
 
 ```javascript
-icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24" width="24" height="24"><path d="M20,2H4C2.9,2,2,2.9,2,4v16c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2z M18.4,7.4H17c-0.9,0-1,0.3-1,1l0,1.3 h2.1L18,12h-1.9v7h-3.2v-7h-1.2V9.6h1.2V8.1c0-2,0.8-3.1,3.1-3.1h2.4V7.4z"/></svg>'
-```
-
-##### `url`
-
-`url` must be a string containing the sharing URL (a list of options can be found [in this project](https://github.com/bradvin/social-share-urls)). Note that `PAGE_URL` and `TEXT_SELECTION` are required placeholders that will be replaced by the library. These are the only options available for now.
-
-Example:
-
-```javascript
-url: 'https://reddit.com/submit?url=PAGE_URL&title=TEXT_SELECTION'
-```
-
-The complete example of `appendCustomShareButton` would look like this:
-
-```javascript
-appendCustomShareButton([{
-  icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24" width="24" height="24"><path d="M20,2H4C2.9,2,2,2.9,2,4v16c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2z M18.4,7.4H17c-0.9,0-1,0.3-1,1l0,1.3 h2.1L18,12h-1.9v7h-3.2v-7h-1.2V9.6h1.2V8.1c0-2,0.8-3.1,3.1-3.1h2.4V7.4z"/></svg>',
-  url: 'https://reddit.com/submit?url=PAGE_URL&title=TEXT_SELECTION'
-}])
-```
-
-#### `.init()`
-
-Initialize the library. The only required method to be called.
-
-### Minimum example
-
-```html
-  ...
-  <script src="sharect.min.js"></script>
-  <script>
-    var sharect = new Sharect();
-    sharect.init();
-  </script>
-</body>
+Sharect.appendCustomShareButtons([{
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 478.165 478.165"><path d="M478.165 232.946c0 128.567-105.057 232.966-234.679 232.966-41.102 0-79.814-10.599-113.445-28.969L0 478.165l42.437-125.04c-21.438-35.065-33.77-76.207-33.77-120.159C8.667 104.34 113.763 0 243.485 0c129.623 0 234.68 104.34 234.68 232.946zM243.485 37.098c-108.802 0-197.422 87.803-197.422 195.868 0 42.915 13.986 82.603 37.576 114.879l-24.586 72.542 75.849-23.968c31.121 20.481 68.457 32.296 108.583 32.296 108.723 0 197.323-87.843 197.323-195.908 0-107.886-88.6-195.709-197.323-195.709zM361.931 286.62c-1.395-2.331-5.22-3.746-10.898-6.814-5.917-2.849-34.089-16.497-39.508-18.37-5.16-1.913-8.986-2.849-12.811 2.829-4.005 5.638-14.903 18.629-18.23 22.354-3.546 3.785-6.854 4.264-12.552 1.435-5.618-2.809-24.267-8.866-46.203-28.391-17.055-15.042-28.67-33.711-31.997-39.508-3.427-5.758-.398-8.826 2.471-11.635 2.69-2.59 5.778-6.734 8.627-10.041 2.969-3.287 3.905-5.638 5.798-9.424 1.913-3.905.936-7.192-.478-10.141-1.415-2.849-13.01-30.881-17.752-42.337-4.841-11.416-9.543-9.523-12.871-9.523-3.467 0-7.212-.478-11.117-.478-3.785 0-10.041 1.395-15.381 7.192-5.2 5.658-20.123 19.465-20.123 47.597 0 28.052 20.601 55.308 23.55 59.053 2.869 3.785 39.747 63.197 98.303 86.07 58.476 22.872 58.476 15.321 69.115 14.365 10.38-.956 34.069-13.867 38.811-27.096 4.66-13.45 4.66-24.766 3.246-27.137z"/></svg>',
+  url: 'https://api.whatsapp.com/send?text=TEXT_SELECTION%20PAGE_URL'
+}]).init()
 ```
 
 Result
 
-![Default](./docs/default.png)
+![result](/imagem.png)
+</details>
+
+### .init
+
+**Required**. Initialize the library.
+
+## Usage
+
+### Smallest example
+
+```html
+<script src="https://unpkg.com/sharect@1.1.0/dist/sharect.min.js"></script>
+<script>
+  Sharect.init();
+</script>
+```
 
 ### Complete core API
 
-Assuming you already added the above Facebook SDK script.
-
 ```html
-  ...
-  <script src="sharect.min.js"></script>
-  <script>
-    var sharect = new Sharect();
-    sharect.config({
-      facebook: true,
-      twitter: true,
-      twitterUsername: '@estevanmaito',
-      backgroundColor: '#ff4081',
-      iconColor: '#fff',
-      selectableElements: ['p', '.header', 'blockquote']
-    }).init();
-  </script>
-</body>
-```
-
-Note that ```twitter``` and `facebook` are ```true``` by default, as ```iconColor``` is ```#ffffff```. This example just exposes the available API.
-
-Result
-
-![Complete](./docs/custom.png)
-
-### Complete API with extended share buttons
-
-TODO: Improve the SVG icons from the example below
-
-```html
-...
-<script src="sharect.min.js"></script>
+<script src="https://unpkg.com/sharect@1.1.0/dist/sharect.min.js"></script>
 <script>
-  var sharect = new Sharect();
-    sharect.config({
-      facebook: true,
-      twitter: true,
-      twitterUsername: '@estevanmaito',
-      backgroundColor: '#9bab2f',
-      iconColor: '#fff'
-    })
-    // append Reddit share button
-    .appendCustomShareButton({
-      icon: `<svg enable-background="new 0 0 512 512" height="24px" class="sharect__icon" version="1.1" viewBox="0 0 512 512" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path clip-rule="evenodd" d="M175.958,256.004c17.686,0,32.192,14.503,32.192,32.176   c0,17.672-14.506,31.724-32.192,31.724c-17.693,0-31.747-14.052-31.747-31.724C144.211,270.507,158.265,256.004,175.958,256.004   L175.958,256.004z M336.034,256.004c-17.686,0-31.746,14.503-31.746,32.176c0,17.672,14.061,31.724,31.746,31.724   c17.687,0,32.2-14.052,32.2-31.724C368.234,270.507,353.721,256.004,336.034,256.004L336.034,256.004z" /><path d="M166.428,371.109c-7.249-5.448-8.163-15.408-2.719-22.215c4.992-7.245,15.421-8.15,22.225-2.717   c18.139,14.05,47.159,21.762,70.297,21.762c22.67,0,51.698-7.712,70.29-21.762c6.796-5.434,16.779-4.528,22.216,2.717   c5.438,6.807,4.078,16.767-2.719,22.215c-23.591,18.578-60.321,29.007-89.787,29.007   C226.296,400.116,190.011,389.688,166.428,371.109L166.428,371.109z M401.34,196.187c-35.371-20.389-79.819-33.081-128.799-35.797   l25.857-76.584l69.836,20.389c0,30.818,24.95,55.742,55.775,55.742c30.84,0,56.244-24.924,56.244-55.742   C480.254,72.924,454.85,48,424.01,48c-19.498,0-36.73,10.429-46.698,25.377l-84.804-24.464c-8.171-2.724-16.779,1.811-19.514,9.968   L238.99,160.389c-48.526,2.716-92.967,15.409-128.338,35.797c-11.342-12.231-28.114-19.936-46.714-19.936   C28.567,176.251,0,204.796,0,240.142c0,24.011,13.601,44.869,33.106,55.734c-0.906,5.449-1.359,10.882-1.359,16.315   C31.747,396.025,132.416,464,256.23,464c123.347,0,224.023-67.975,224.023-151.809c0-5.434-0.453-10.866-1.359-16.315   C498.846,285.011,512,264.153,512,240.142c0-35.346-28.575-63.891-63.946-63.891C429.462,176.251,413.136,183.956,401.34,196.187   L401.34,196.187z M256.23,192.105c105.661,0,191.823,53.478,191.823,120.086c0,66.162-86.162,119.633-191.823,119.633   c-106.129,0-192.292-53.471-192.292-119.633C63.938,245.583,150.102,192.105,256.23,192.105L256.23,192.105z M468.911,264.153   c-9.062-18.118-22.67-34.885-40.355-49.389c5.438-4.074,12.233-6.798,19.498-6.798c17.686,0,31.747,14.503,31.747,32.176   C479.801,249.658,475.707,258.268,468.911,264.153L468.911,264.153z M83.444,214.765c-17.686,14.504-31.293,31.271-40.363,49.389   c-6.804-5.886-10.881-14.496-10.881-24.011c0-17.672,14.506-32.176,31.738-32.176C71.649,207.966,78.453,210.69,83.444,214.765   L83.444,214.765z M424.01,128.213c-13.14,0-24.029-10.874-24.029-24.019c0-13.598,10.89-24.019,24.029-24.019   c13.154,0,24.044,10.421,24.044,24.019C448.054,117.34,437.164,128.213,424.01,128.213L424.01,128.213z"/></g></svg>`,
-      url: `https://reddit.com/submit?url=PAGE_URL&title=TEXT_SELECTION`
-    })
-    // append Hacker News share button
-    .appendCustomShareButton({
-      icon: `<svg version="1.1" class="sharect__icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 430.117 430.118" style="enable-background:new 0 0 430.117 430.118;" xml:space="preserve"><g><path d="M0,0v430.118h430.117V0H0z M234.175,248.167v105.485h-38.232V248.167L101.985,62.128h44.265 l68.713,140.07l71.446-140.07h41.499L234.175,248.167z"/></g></svg>`,
-      url: `https://news.ycombinator.com/submitlink?u=PAGE_URL&t=TEXT_SELECTION`
-    })
-    .init();
+  Sharect.config({
+    facebook: true,
+    twitter: true,
+    twitterUsername: 'estevanmaito',
+    backgroundColor: '#C53364',
+    iconColor: '#fff',
+    selectableElements: ['p']
+  }).init();
 </script>
-</body>
 ```
+
+## Adding more social icons
+
+You can find a list of social share options [in this project](https://github.com/bradvin/social-share-urls), and below are some common social networks so you can save time or use it as reference.
+
+<details><summary><img src="https://camo.githubusercontent.com/e7e945f0a3889033af612fe079140af72609c199/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f77686174736170702e737667" width="24"> Whatsapp</summary>
+
+```javascript
+{
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 478.165 478.165"><path d="M478.165 232.946c0 128.567-105.057 232.966-234.679 232.966-41.102 0-79.814-10.599-113.445-28.969L0 478.165l42.437-125.04c-21.438-35.065-33.77-76.207-33.77-120.159C8.667 104.34 113.763 0 243.485 0c129.623 0 234.68 104.34 234.68 232.946zM243.485 37.098c-108.802 0-197.422 87.803-197.422 195.868 0 42.915 13.986 82.603 37.576 114.879l-24.586 72.542 75.849-23.968c31.121 20.481 68.457 32.296 108.583 32.296 108.723 0 197.323-87.843 197.323-195.908 0-107.886-88.6-195.709-197.323-195.709zM361.931 286.62c-1.395-2.331-5.22-3.746-10.898-6.814-5.917-2.849-34.089-16.497-39.508-18.37-5.16-1.913-8.986-2.849-12.811 2.829-4.005 5.638-14.903 18.629-18.23 22.354-3.546 3.785-6.854 4.264-12.552 1.435-5.618-2.809-24.267-8.866-46.203-28.391-17.055-15.042-28.67-33.711-31.997-39.508-3.427-5.758-.398-8.826 2.471-11.635 2.69-2.59 5.778-6.734 8.627-10.041 2.969-3.287 3.905-5.638 5.798-9.424 1.913-3.905.936-7.192-.478-10.141-1.415-2.849-13.01-30.881-17.752-42.337-4.841-11.416-9.543-9.523-12.871-9.523-3.467 0-7.212-.478-11.117-.478-3.785 0-10.041 1.395-15.381 7.192-5.2 5.658-20.123 19.465-20.123 47.597 0 28.052 20.601 55.308 23.55 59.053 2.869 3.785 39.747 63.197 98.303 86.07 58.476 22.872 58.476 15.321 69.115 14.365 10.38-.956 34.069-13.867 38.811-27.096 4.66-13.45 4.66-24.766 3.246-27.137z"/></svg>',
+  url: 'https://api.whatsapp.com/send?text=TEXT_SELECTION%20PAGE_URL'
+}
+```
+</details>
+
+<details><summary><img src="https://camo.githubusercontent.com/2ed658492cb094825d26b06c1275a7e0414f32e4/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f7265646469742e737667" width="24"> Reddit</summary>
+
+```javascript
+{
+  icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M133.333 300c0 18.41 14.924 33.333 33.333 33.333S200 318.41 200 300s-14.924-33.333-33.333-33.333S133.333 281.59 133.333 300zm200 0c0 18.41 14.924 33.333 33.333 33.333S400 318.41 400 300s-14.924-33.333-33.333-33.333S333.333 281.59 333.333 300zm1.621 71.238c8.585-6.763 21.029-5.288 27.796 3.298 6.765 8.587 5.287 21.03-3.3 27.796-23.905 18.832-60.324 31.001-92.783 31.001s-68.879-12.169-92.783-31.001c-8.586-6.766-10.062-19.209-3.298-27.796 6.765-8.584 19.209-10.061 27.794-3.298 13.762 10.843 41.001 22.512 68.287 22.512s54.524-11.669 68.287-22.512zm198.379-137.905c0-36.819-29.849-66.667-66.667-66.667-25.06 0-46.871 13.839-58.256 34.282-34.268-18.747-76.019-30.857-121.501-33.65l39.782-89.336 76.142 21.979c6.852 19.449 25.376 33.393 47.166 33.393 27.614 0 50-22.386 50-50s-22.386-50-50-50c-19.042 0-35.595 10.647-44.038 26.309l-84.848-24.491c-9.49-2.739-19.551 1.938-23.567 10.964l-54.048 121.368c-44.342 3.123-85.032 15.116-118.56 33.456-11.388-20.443-33.211-34.273-58.272-34.273C29.848 166.667 0 196.515 0 233.333c0 27.246 16.355 50.653 39.777 60.991-4.203 12.514-6.444 25.575-6.444 39.009C33.333 425.381 137.8 500 266.667 500 395.532 500 500 425.381 500 333.333c0-13.434-2.239-26.491-6.44-39.003 23.42-10.339 39.773-33.75 39.773-60.997zM450 64.583c10.355 0 18.75 8.395 18.75 18.75s-8.395 18.75-18.75 18.75-18.75-8.395-18.75-18.75 8.394-18.75 18.75-18.75zM33.333 233.333c0-18.38 14.953-33.333 33.333-33.333 13.285 0 24.777 7.814 30.128 19.087-17.42 13.211-31.857 28.449-42.534 45.174-12.252-4.931-20.927-16.932-20.927-30.928zm233.334 227.084c-107.005 0-193.75-56.897-193.75-127.084 0-70.186 86.745-127.083 193.75-127.083s193.75 56.897 193.75 127.083c0 70.187-86.746 127.084-193.75 127.084zm212.406-196.156c-10.677-16.725-25.113-31.964-42.534-45.175C441.89 207.814 453.381 200 466.667 200c18.38 0 33.333 14.953 33.333 33.333 0 13.996-8.675 25.997-20.927 30.928z"/></svg>',
+  url: 'https://reddit.com/submit?url=PAGE_URL&title=TEXT_SELECTION'
+}
+```
+</details>
+
+## Upgrade
+
+If you are coming from 1.x, please refer to our [guide on upgrading](/UPGRADING.md).
 
 ## Contributing
 

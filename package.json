@@ -12,6 +12,12 @@
     "lint": "eslint",
     "release": "release-it"
   },
+  "release-it": {
+    "github": {
+      "release": true,
+      "assets": ["dist/sharect.js"]
+    }
+  },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",

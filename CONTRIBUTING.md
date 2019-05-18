@@ -30,19 +30,4 @@ This is a non exhaustive guide for contributing to this project, and you can con
 
 ## Styleguide
 
-I'm constantly trying to improve the overall coding experience, but until we have ES Lint and Prettier fine tunned, there are some rules that should be followed.
-
-Some things may sound obvious to the more experienced developer, but are based on previous pull requests received by this project.
-
-#### Don't use `var`
-
-```javascript
-// bad
-var something = 'hi'
-
-// good
-const something = 'hi'
-let otherThing = 'hey'
-```
-
-#### Function titles should describe what the function do
+Refer to the `eslint` configuration file.

@@ -1,3 +1,3 @@
 export default function hasSelection() {
-  return !!window.getSelection().toString();
+  return !!window.getSelection().toString()
 }

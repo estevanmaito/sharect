@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from '../Button'
 
 export function getParsedURL(url, username) {
   return url

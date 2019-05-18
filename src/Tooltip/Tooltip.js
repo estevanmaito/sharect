@@ -1,5 +1,5 @@
-import { defaultStyle, mobileStyle, desktopStyle } from "./style";
-import Arrow from "./Arrow/Arrow";
+import { defaultStyle, mobileStyle, desktopStyle } from './style'
+import Arrow from './Arrow/Arrow'
 
 export default function Tooltip(props) {
   const {
@@ -12,21 +12,21 @@ export default function Tooltip(props) {
     icons,
     arrowSize,
     isMobile
-  } = props;
+  } = props
 
-  const tooltip = document.createElement("div");
-  let buttonSize = iconSize + buttonMargin;
-  tooltip.className = "sharect";
+  const tooltip = document.createElement('div')
+  let buttonSize = iconSize + buttonMargin
+  tooltip.className = 'sharect'
 
-  tooltip.style.cssText = defaultStyle(backgroundColor);
+  tooltip.style.cssText = defaultStyle(backgroundColor)
   if (isMobile) {
-    buttonSize = mobileIconSize + buttonMargin;
-    tooltip.style.cssText += mobileStyle(buttonSize);
+    buttonSize = mobileIconSize + buttonMargin
+    tooltip.style.cssText += mobileStyle(buttonSize)
   } else {
-    tooltip.style.cssText += desktopStyle(top, left);
+    tooltip.style.cssText += desktopStyle(top, left)
   }
 
-  tooltip.appendChild(icons.icons);
+  tooltip.appendChild(icons.icons)
 
   if (!isMobile) {
     const arrow = Arrow({
@@ -34,10 +34,10 @@ export default function Tooltip(props) {
       backgroundColor,
       buttonSize,
       icons
-    });
+    })
 
-    tooltip.appendChild(arrow);
+    tooltip.appendChild(arrow)
   }
 
-  return tooltip;
+  return tooltip
 }

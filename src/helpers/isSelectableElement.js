@@ -1,4 +1,4 @@
-import getClosestElement from "./getClosestElement";
+import getClosestElement from './getClosestElement'
 
 export default function isSelectableElement(selectableElements) {
   const baseNode = window.getSelection().baseNode || window.getSelection().anchorNode

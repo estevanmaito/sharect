@@ -10,12 +10,16 @@
   },
   "homepage": "https://github.com/estevanmaito/sharect#readme",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
+    "test:coverage": "jest --coverage",
     "build": "webpack",
     "dev": "webpack --watch"
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-loader": "^8.0.6",
     "jest": "^24.7.1",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",

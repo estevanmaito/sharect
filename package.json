@@ -18,6 +18,7 @@
       "assets": ["dist/sharect.js"]
     }
   },
+  "files": ["dist/sharect.js"],
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.4.4",

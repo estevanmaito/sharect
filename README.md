@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/sharect"><img src="https://img.shields.io/npm/v/sharect.svg?style=flat-square"></a>
-  <a href="https://github.com/estevanmaito/sharect/releases/download/v2.0.0/sharect.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/total.svg?style=flat-square"></a>
+  <a href="https://github.com/estevanmaito/sharect/releases/download/2.0.0/sharect.js"><img src="https://img.shields.io/github/downloads/estevanmaito/sharect/total.svg?style=flat-square"></a>
   <a href="https://github.com/estevanmaito/sharect"><img src="https://img.shields.io/npm/l/sharect.svg?style=flat-square"></a>
   <a href="http://twitter.com/home?status=Sharect%20is%20a%20JavaScript%20library%20to%20let%20people%20share%20their%20text%20selections%20to%20social%20networks%20%23Sharect%20via%20%40estevanmaito"><img src="https://img.shields.io/twitter/url/https/shields.io.svg?style=social"></a>
 </p>
@@ -36,7 +36,7 @@ A **lightweight** (8kb, 2.9kb gziped) JavaScript library to let people share the
 ### Install (choose one)
 
 - `npm install sharect`
-- [Download from Github](https://github.com/estevanmaito/sharect/releases/download/v2.0.0/sharect.js)
+- [Download from Github](https://github.com/estevanmaito/sharect/releases/download/2.0.0/sharect.js)
 - CDN `<script src="https://unpkg.com/sharect@2.0.0/dist/sharect.js"></script>`
 
 ### Initialize

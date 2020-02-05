@@ -86,7 +86,7 @@ Sharect.config({
 
 Result
 
-![result](/imagem.png)
+![result](/docs/simple-pink.png)
 </details>
 
 ### .appendCustomShareButtons
@@ -114,7 +114,7 @@ Sharect.appendCustomShareButtons([{
 
 Result
 
-![result](/imagem.png)
+![result](/docs/complete.png)
 </details>
 
 ### .init

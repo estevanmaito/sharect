@@ -12,12 +12,10 @@ const props = {
   top: 0,
   left: 0,
   iconSize: 24,
-  mobileIconSize: 50,
   buttonMargin: 7 * 2,
   backgroundColor: '#C564A4',
   icons,
-  arrowSize: 5,
-  isMobile: false
+  arrowSize: 5
 }
 
 window.getSelection = () => ({
@@ -39,14 +37,5 @@ describe('renderTooltip', () => {
 
     expect(assert).toBeDefined()
     expect(assert.children).toHaveLength(2)
-  })
-
-  it('should render mobile Tooltip', () => {
-    renderTooltip({ ...props, isMobile: true })
-
-    const assert = document.body.querySelector('.sharect')
-
-    expect(assert).toBeDefined()
-    expect(assert.children).toHaveLength(1)
   })
 })

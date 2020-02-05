@@ -14,12 +14,10 @@ const props = {
   top: 0,
   left: 0,
   iconSize: 24,
-  mobileIconSize: 50,
   buttonMargin: 7 * 2,
   backgroundColor: '#C564A4',
   icons,
-  arrowSize: 5,
-  isMobile: false
+  arrowSize: 5
 }
 
 describe('moveTooltip', () => {
@@ -57,27 +55,4 @@ describe('moveTooltip', () => {
 
     expect(assert.left).toEqual(expectedLeft)
   })
-
-  it('should not move the tooltip on mobile', () => {
-    window.getSelection = () => ({
-      getRangeAt: () => ({
-        getBoundingClientRect: () => ({
-          width: 10,
-          height: 0,
-          top: 10,
-          left: 50
-        })
-      })
-    })
-
-    const mobileMovement = moveTooltip({ ...props, isMobile: true })
-
-    const assert = document.querySelector('.sharect').style
-    const expectedLeft = `${getTooltipPosition(props).left}px`
-
-    expect(assert.left).toEqual(expectedLeft)
-    expect(mobileMovement).toBeNull()
-  })
-  
-  
 })

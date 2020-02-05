@@ -2,7 +2,7 @@ import { appendIconStyle } from './helpers/appendIconStyles'
 import attachEvents from './helpers/attachEvents'
 import getIcons from './helpers/getIcons'
 
-export default (function() {
+export default (function () {
   let _networks = {
     twitter: {
       isActive: true,
@@ -21,11 +21,10 @@ export default (function() {
   let _customShareButtons = []
   let _backgroundColor = '#333'
   let _iconColor = '#fff'
-  
+
   let _arrowSize = 5
   let _buttonMargin = 7 * 2
   let _iconSize = 24
-  let _mobileIconSize = 50
 
   function config(o) {
     if (o.twitter !== undefined) _networks.twitter.isActive = o.twitter
@@ -50,12 +49,11 @@ export default (function() {
       arrowSize: _arrowSize,
       buttonMargin: _buttonMargin,
       iconSize: _iconSize,
-      mobileIconSize: _mobileIconSize,
       selectableElements: _selectableElements,
       networks: _networks,
       customShareButtons: _customShareButtons
     }
-    
+
     appendIconStyle({ ...props })
     _icons = getIcons({ ...props })
     attachEvents({ ...props, icons: _icons })

@@ -1,10 +1,8 @@
 import {
-  appendIconStyle,
-  appendMobileIconStyle
+  appendIconStyle
 } from '../../helpers/appendIconStyles'
 
 const iconColor = '#F34'
-const mobileIconSize = 5
 
 describe('appendIconStyle', () => {
   it('should create a style tag', () => {
@@ -13,13 +11,3 @@ describe('appendIconStyle', () => {
     expect(document.body).toMatchSnapshot()
   })
 })
-
-describe('appendMobileIconStyle', () => {
-  it('should update the style for mobile', () => {
-    appendMobileIconStyle(iconColor, mobileIconSize)
-
-    expect(document.body).toMatchSnapshot()
-  })
-  
-})
-

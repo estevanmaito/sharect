@@ -126,7 +126,7 @@ Result
 ### Smallest example
 
 ```html
-<script src="https://unpkg.com/sharect@1.1.0/dist/sharect.min.js"></script>
+<script src="https://unpkg.com/sharect@2.0.0/dist/sharect.min.js"></script>
 <script>
   Sharect.init();
 </script>
@@ -135,7 +135,7 @@ Result
 ### Complete core API
 
 ```html
-<script src="https://unpkg.com/sharect@1.1.0/dist/sharect.min.js"></script>
+<script src="https://unpkg.com/sharect@2.0.0/dist/sharect.min.js"></script>
 <script>
   Sharect.config({
     facebook: true,

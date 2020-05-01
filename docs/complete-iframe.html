@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complete</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="build/tailwind.css" />
+  </head>
+  <body class="p-4 antialiased text-gray-800">
+    <h4 class="mb-4 text-2xl font-semibold text-indigo-900">Try again...</h4>
+    <p class="mb-2">Only paragraphs are selectable!</p>
+    <p>Guess what... I'm a paragraph too!</p>
+    <script src="build/sharect.js"></script>
+    <script>
+      Sharect.config({
+        facebook: true,
+        twitter: true,
+        twitterUsername: 'estevanmaito',
+        backgroundColor: '#667eea',
+        iconColor: '#FFF',
+        selectableElements: ['p'],
+      }).init()
+    </script>
+  </body>
+</html>

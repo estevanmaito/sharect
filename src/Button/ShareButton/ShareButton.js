@@ -3,7 +3,7 @@ import Button from '../Button'
 export function getParsedURL(url, username) {
   return url
     .replace(/PAGE_URL/, window.location.href)
-    .replace(/TEXT_SELECTION/, window.getSelection().toString())
+    .replace(/TEXT_SELECTION/, encodeURIComponent(window.getSelection().toString()))
     .replace(/USERNAME/, username)
 }
 
